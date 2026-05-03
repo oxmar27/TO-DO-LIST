@@ -1,0 +1,47 @@
+import random
+
+def guess_game():
+    print("🎮 Welcome to the Number Guessing Game!")
+
+    # Choose difficulty level
+    level = input("Choose level (easy / medium / hard): ")
+
+    if level == "easy":
+        max_number = 10
+        attempts = 5
+    elif level == "medium":
+        max_number = 50
+        attempts = 7
+    else:
+        max_number = 100
+        attempts = 10
+
+    number = random.randint(1, max_number)
+
+    print(f"I picked a number between 1 and {max_number}. Try to guess it!")
+
+    while attempts > 0:
+        print(f"Attempts left: {attempts}")
+        guess = int(input("Enter a number: "))
+
+        if guess < number:
+            print("Go higher 👆")
+        elif guess > number:
+            print("Go lower 👇")
+        else:
+            print("🎉 Correct! You win!")
+            break
+
+        attempts -= 1
+
+    if attempts == 0:
+        print(f"❌ You lost! The number was {number}")
+
+# Play again loop
+while True:
+    guess_game()
+    again = input("Do you want to play again? (yes / no): ")
+
+    if again != "yes":
+        print("👋 Goodbye!")
+        break
